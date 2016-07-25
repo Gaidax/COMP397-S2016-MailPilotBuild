@@ -59,8 +59,8 @@ module objects {
 
             this.y = -this.height;
 
-            // get a random x location
-            this.x = Math.floor((Math.random() * (640 - (this.width * 0.5))) + (this.width * 0.5));
+            // get a random y location
+            this.y = Math.floor((Math.random() * (480 - (this.width * 0.5))) + (this.width * 0.5));
         }
 
         /**
@@ -71,7 +71,7 @@ module objects {
          * @returns {void}
          */
         private _checkBounds():void {
-            if(this.y >= (480 + (this.height * 0.5))) {
+            if(this.x >= (640 + (this.height * 0.5))) {
                 this._reset();
             }
         }
