@@ -6,35 +6,59 @@ var __extends = (this && this.__extends) || function (d, b) {
 var objects;
 (function (objects) {
     /**
-     * This is the Ocean object used in the game
+     * This is the Asteroid object used in the game
      *
      * @export
-     * @class Ocean
+     * @class Asteroid
      * @extends {createjs.Bitmap}
      */
-    var Ocean = (function (_super) {
-        __extends(Ocean, _super);
+    var Asteroid = (function (_super) {
+        __extends(Asteroid, _super);
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         /**
-         * Creates an instance of Ocean.
+         * Creates an instance of Island.
          *
          * @constructor
          * @param {string} imageString
          */
-        function Ocean(imageString) {
+        function Asteroid(imageString) {
             _super.call(this, core.assets.getResult(imageString));
             this.start();
         }
+        Object.defineProperty(Asteroid.prototype, "width", {
+            // PUBLIC PROPERTIES
+            get: function () {
+                return this._width;
+            },
+            set: function (newWidth) {
+                this._width = newWidth;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Asteroid.prototype, "height", {
+            get: function () {
+                return this._height;
+            },
+            set: function (newHeight) {
+                this._height = newHeight;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         /**
          * Resets the object outside of the viewport
+         * and sets the x and y locations
          *
          * @private
          * @method _reset
          * @returns {void}
          */
-        Ocean.prototype._reset = function () {
-            this.x = 0;
+        Asteroid.prototype._reset = function () {
+            this.x = 640 + (this.height * 0.5);
+            // get a random x location
+            this.y = Math.floor((Math.random() * (480 - (this.width * 0.5))) + (this.width * 0.5));
         };
         /**
          * This method checks if the object has reached its boundaries
@@ -43,8 +67,8 @@ var objects;
          * @method _checkBounds
          * @returns {void}
          */
-        Ocean.prototype._checkBounds = function () {
-            if (this.x <= -810) {
+        Asteroid.prototype._checkBounds = function () {
+            if (this.x <= (-(this.height * 0.5))) {
                 this._reset();
             }
         };
@@ -57,7 +81,11 @@ var objects;
          * @method start
          * @returns {void}
          */
-        Ocean.prototype.start = function () {
+        Asteroid.prototype.start = function () {
+            this.width = this.getBounds().width;
+            this.height = this.getBounds().height;
+            this.regX = this.width * 0.5;
+            this.regY = this.height * 0.5;
             this._reset();
             this._dx = 5; // 5px per frame down
         };
@@ -69,12 +97,12 @@ var objects;
          * @method update
          * @returns {void}
          */
-        Ocean.prototype.update = function () {
+        Asteroid.prototype.update = function () {
             this.x -= this._dx;
             this._checkBounds();
         };
-        return Ocean;
+        return Asteroid;
     }(createjs.Bitmap));
-    objects.Ocean = Ocean;
+    objects.Asteroid = Asteroid;
 })(objects || (objects = {}));
-//# sourceMappingURL=ocean.js.map
+//# sourceMappingURL=asteroid.js.map

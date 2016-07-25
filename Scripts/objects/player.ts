@@ -78,7 +78,7 @@ module objects {
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
-            this.y = 430;
+            this.x = 230;
         }
 
         /**

@@ -6,26 +6,24 @@ var __extends = (this && this.__extends) || function (d, b) {
 var objects;
 (function (objects) {
     /**
-     * This is the Cloud object used in the game
-     *
      * @export
-     * @class Cloud
+     * @class Comet
      * @extends {createjs.Bitmap}
      */
-    var Cloud = (function (_super) {
-        __extends(Cloud, _super);
+    var Comet = (function (_super) {
+        __extends(Comet, _super);
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         /**
-         * Creates an instance of Island.
+         * Creates an instance of Comet.
          *
          * @constructor
          * @param {string} imageString
          */
-        function Cloud(imageString) {
+        function Comet(imageString) {
             _super.call(this, core.assets.getResult(imageString));
             this.start();
         }
-        Object.defineProperty(Cloud.prototype, "width", {
+        Object.defineProperty(Comet.prototype, "width", {
             // PUBLIC PROPERTIES
             get: function () {
                 return this._width;
@@ -36,7 +34,7 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(Cloud.prototype, "height", {
+        Object.defineProperty(Comet.prototype, "height", {
             get: function () {
                 return this._height;
             },
@@ -55,7 +53,7 @@ var objects;
          * @method _reset
          * @returns {void}
          */
-        Cloud.prototype._reset = function () {
+        Comet.prototype._reset = function () {
             this._dx = Math.floor((Math.random() * 5) + 5); // vertical speed
             this._dy = Math.floor((Math.random() * 4) - 2); // horizontal drift
             this.x = 640 + (this.height * 0.5);
@@ -69,7 +67,7 @@ var objects;
          * @method _checkBounds
          * @returns {void}
          */
-        Cloud.prototype._checkBounds = function () {
+        Comet.prototype._checkBounds = function () {
             if (this.x <= (-(this.height * 0.5))) {
                 this._reset();
             }
@@ -83,7 +81,7 @@ var objects;
          * @method start
          * @returns {void}
          */
-        Cloud.prototype.start = function () {
+        Comet.prototype.start = function () {
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
@@ -98,13 +96,13 @@ var objects;
          * @method update
          * @returns {void}
          */
-        Cloud.prototype.update = function () {
+        Comet.prototype.update = function () {
             this.y -= this._dy;
             this.x -= this._dx;
             this._checkBounds();
         };
-        return Cloud;
+        return Comet;
     }(createjs.Bitmap));
-    objects.Cloud = Cloud;
+    objects.Comet = Comet;
 })(objects || (objects = {}));
-//# sourceMappingURL=cloud.js.map
+//# sourceMappingURL=comet.js.map

@@ -1,10 +1,10 @@
 module scenes {
     export class Play extends objects.Scene {
         //  PRIVATE INSTANCE VARIABLES
-        private _ocean: objects.Ocean;
-        private _island: objects.Island;
+        private _space: objects.Space;
+        private _asteroid: objects.Asteroid;
         private _player: objects.Player;
-        private _cloud: objects.Cloud;
+        private _comet: objects.Comet;
 
         /**
          * Creates an instance of Menu.
@@ -19,30 +19,30 @@ module scenes {
          */
         public Start():void {
             // ocean object
-            this._ocean = new objects.Ocean("ocean");
-            this.addChild(this._ocean);
+            this._space = new objects.Space("space");
+            this.addChild(this._space);
 
             // island object
-            this._island = new objects.Island("island");
-            this.addChild(this._island);
+            this._asteroid = new objects.Asteroid("asteroid1");
+            this.addChild(this._asteroid);
 
             // player object
             this._player = new objects.Player("plane");
             this.addChild(this._player);
 
             // cloud object
-            this._cloud = new objects.Cloud("cloud");
-            this.addChild(this._cloud);
+            this._comet = new objects.Comet("comet");
+            this.addChild(this._comet);
 
             // add this scene to the global scene container
             core.stage.addChild(this);
         }
 
         public Update():void {
-            this._ocean.update();
-            this._island.update();
+            this._space.update();
+            this._asteroid.update();
             this._player.update();
-            this._cloud.update();
+            this._comet.update();
         }
 
         // EVENT HANDLERS ++++++++++++++++

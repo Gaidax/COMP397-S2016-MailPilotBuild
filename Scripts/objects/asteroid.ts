@@ -1,14 +1,13 @@
 module objects {
     /**
-     * This is the Cloud object used in the game
+     * This is the Asteroid object used in the game
      * 
      * @export
-     * @class Cloud
+     * @class Asteroid
      * @extends {createjs.Bitmap}
      */
-    export class Cloud extends createjs.Bitmap {
+    export class Asteroid extends createjs.Bitmap {
         // PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++
-        private _dy:number;
         private _dx:number;
         private _width:number;
         private _height:number;
@@ -54,13 +53,10 @@ module objects {
          * @returns {void}
          */
         private _reset():void {
-            this._dx = Math.floor((Math.random() * 5) + 5); // vertical speed
-            this._dy = Math.floor((Math.random() * 4) - 2); // horizontal drift
-
             this.x = 640 +(this.height * 0.5);
 
             // get a random x location
-            this.y = Math.floor((Math.random() * (480 + (this.width * 0.5))) + (this.width * 0.5));
+            this.y = Math.floor((Math.random() * (480 - (this.width * 0.5))) + (this.width * 0.5));
         }
 
         /**
@@ -71,7 +67,7 @@ module objects {
          * @returns {void}
          */
         private _checkBounds():void {
-            if(this.x <= (- (this.height * 0.5))) {
+            if(this.x <= ( -(this.height * 0.5))) {
                 this._reset();
             }
         }
@@ -92,6 +88,7 @@ module objects {
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
             this._reset();
+            this._dx = 5; // 5px per frame down
         }
 
         /**
@@ -103,7 +100,6 @@ module objects {
          * @returns {void}
          */
         public update():void {
-            this.y -= this._dy;
             this.x -= this._dx;
             this._checkBounds();
         }
