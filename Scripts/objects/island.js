@@ -56,9 +56,9 @@ var objects;
          * @returns {void}
          */
         Island.prototype._reset = function () {
-            this.x = -this.height;
+            this.x = 640 + (this.height * 0.5);
             // get a random x location
-            this.x = Math.floor((Math.random() * (480 - (this.width * 0.5))) + (this.width * 0.5));
+            this.y = Math.floor((Math.random() * (480 - (this.width * 0.5))) + (this.width * 0.5));
         };
         /**
          * This method checks if the object has reached its boundaries
@@ -68,7 +68,7 @@ var objects;
          * @returns {void}
          */
         Island.prototype._checkBounds = function () {
-            if (this.x >= (640 + (this.height * 0.5))) {
+            if (this.x <= (-(this.height * 0.5))) {
                 this._reset();
             }
         };
@@ -98,7 +98,7 @@ var objects;
          * @returns {void}
          */
         Island.prototype.update = function () {
-            this.x += this._dx;
+            this.x -= this._dx;
             this._checkBounds();
         };
         return Island;

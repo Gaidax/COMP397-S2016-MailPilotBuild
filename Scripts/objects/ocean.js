@@ -34,7 +34,7 @@ var objects;
          * @returns {void}
          */
         Ocean.prototype._reset = function () {
-            this.x = -800;
+            this.x = 0;
         };
         /**
          * This method checks if the object has reached its boundaries
@@ -44,7 +44,7 @@ var objects;
          * @returns {void}
          */
         Ocean.prototype._checkBounds = function () {
-            if (this.x >= 0) {
+            if (this.x <= -810) {
                 this._reset();
             }
         };
@@ -70,7 +70,7 @@ var objects;
          * @returns {void}
          */
         Ocean.prototype.update = function () {
-            this.x += this._dx;
+            this.x -= this._dx;
             this._checkBounds();
         };
         return Ocean;

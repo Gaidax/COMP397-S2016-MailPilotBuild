@@ -53,10 +53,10 @@ module objects {
          * @returns {void}
          */
         private _reset():void {
-            this.x = -this.height;
+            this.x = 640 +(this.height * 0.5);
 
             // get a random x location
-            this.x = Math.floor((Math.random() * (480 - (this.width * 0.5))) + (this.width * 0.5));
+            this.y = Math.floor((Math.random() * (480 - (this.width * 0.5))) + (this.width * 0.5));
         }
 
         /**
@@ -67,7 +67,7 @@ module objects {
          * @returns {void}
          */
         private _checkBounds():void {
-            if(this.x >= (640 + (this.height * 0.5))) {
+            if(this.x <= ( -(this.height * 0.5))) {
                 this._reset();
             }
         }
@@ -100,7 +100,7 @@ module objects {
          * @returns {void}
          */
         public update():void {
-            this.x += this._dx;
+            this.x -= this._dx;
             this._checkBounds();
         }
     }

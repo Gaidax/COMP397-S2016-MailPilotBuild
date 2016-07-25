@@ -32,7 +32,7 @@ module objects {
          * @returns {void}
          */
         private _reset():void {
-            this.x = -800;
+            this.x = 0;
         }
 
         /**
@@ -43,7 +43,7 @@ module objects {
          * @returns {void}
          */
         private _checkBounds():void {
-            if(this.x >= 0) {
+            if(this.x <= -810) {
                 this._reset();
             }
         }
@@ -72,7 +72,7 @@ module objects {
          * @returns {void}
          */
         public update():void {
-            this.x += this._dx;
+            this.x -= this._dx;
             this._checkBounds();
         }
     }

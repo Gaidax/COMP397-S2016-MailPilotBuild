@@ -54,13 +54,13 @@ module objects {
          * @returns {void}
          */
         private _reset():void {
-            this._dy = Math.floor((Math.random() * 5) + 5); // vertical speed
-            this._dx = Math.floor((Math.random() * 4) - 2); // horizontal drift
+            this._dx = Math.floor((Math.random() * 5) + 5); // vertical speed
+            this._dy = Math.floor((Math.random() * 4) - 2); // horizontal drift
 
-            this.y = -this.height;
+            this.x = 640 +(this.height * 0.5);
 
-            // get a random y location
-            this.y = Math.floor((Math.random() * (480 - (this.width * 0.5))) + (this.width * 0.5));
+            // get a random x location
+            this.y = Math.floor((Math.random() * (480 + (this.width * 0.5))) + (this.width * 0.5));
         }
 
         /**
@@ -71,7 +71,7 @@ module objects {
          * @returns {void}
          */
         private _checkBounds():void {
-            if(this.x >= (640 + (this.height * 0.5))) {
+            if(this.x <= (- (this.height * 0.5))) {
                 this._reset();
             }
         }
@@ -103,8 +103,8 @@ module objects {
          * @returns {void}
          */
         public update():void {
-            this.y += this._dy;
-            this.x += this._dx;
+            this.y -= this._dy;
+            this.x -= this._dx;
             this._checkBounds();
         }
     }
