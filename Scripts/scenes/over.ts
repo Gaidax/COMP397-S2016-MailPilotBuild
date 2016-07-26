@@ -20,7 +20,7 @@ module scenes {
             this._gameOverLabel = new objects.Label(
                 "GAME OVER", "60px","Consolas", "#000000",
                 320, 240
-                );
+                , true);
             this.addChild(this._gameOverLabel);
 
             // add the start button

@@ -34,6 +34,10 @@ namespace core {
     let play: scenes.Play;
     let instruct: scenes.Instruct;
 
+    export let score: number = 0;
+    export let highScore: number = 0;
+    export let lives: number = 3;
+
     
 
     // asset manifest for images and sounds

@@ -21,7 +21,7 @@ module scenes {
             this._menuLabel = new objects.Label(
                 "MENU SCENE", "60px","Consolas", "#000000",
                 320, 240
-                );
+                , true);
             this.addChild(this._menuLabel);
 
             // add the start button

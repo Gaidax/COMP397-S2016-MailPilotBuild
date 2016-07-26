@@ -20,30 +20,9 @@ var objects;
          * @param {string} imageString
          */
         function Comet(imageString) {
-            _super.call(this, core.assets.getResult(imageString));
+            _super.call(this, imageString);
             this.start();
         }
-        Object.defineProperty(Comet.prototype, "width", {
-            // PUBLIC PROPERTIES
-            get: function () {
-                return this._width;
-            },
-            set: function (newWidth) {
-                this._width = newWidth;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(Comet.prototype, "height", {
-            get: function () {
-                return this._height;
-            },
-            set: function (newHeight) {
-                this._height = newHeight;
-            },
-            enumerable: true,
-            configurable: true
-        });
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         /**
          * Resets the object outside of the viewport
@@ -102,7 +81,7 @@ var objects;
             this._checkBounds();
         };
         return Comet;
-    }(createjs.Bitmap));
+    }(objects.GameObject));
     objects.Comet = Comet;
 })(objects || (objects = {}));
 //# sourceMappingURL=comet.js.map

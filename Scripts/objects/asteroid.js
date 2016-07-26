@@ -16,36 +16,15 @@ var objects;
         __extends(Asteroid, _super);
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         /**
-         * Creates an instance of Island.
+         * Creates an instance of an Asteroid.
          *
          * @constructor
          * @param {string} imageString
          */
         function Asteroid(imageString) {
-            _super.call(this, core.assets.getResult(imageString));
+            _super.call(this, imageString);
             this.start();
         }
-        Object.defineProperty(Asteroid.prototype, "width", {
-            // PUBLIC PROPERTIES
-            get: function () {
-                return this._width;
-            },
-            set: function (newWidth) {
-                this._width = newWidth;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(Asteroid.prototype, "height", {
-            get: function () {
-                return this._height;
-            },
-            set: function (newHeight) {
-                this._height = newHeight;
-            },
-            enumerable: true,
-            configurable: true
-        });
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         /**
          * Resets the object outside of the viewport
@@ -88,10 +67,6 @@ var objects;
          * @returns {void}
          */
         Asteroid.prototype.start = function () {
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
             this._reset();
             this._dx = 5; // 5px per frame down
         };
@@ -108,7 +83,7 @@ var objects;
             this._checkBounds();
         };
         return Asteroid;
-    }(createjs.Bitmap));
+    }(objects.GameObject));
     objects.Asteroid = Asteroid;
 })(objects || (objects = {}));
 //# sourceMappingURL=asteroid.js.map

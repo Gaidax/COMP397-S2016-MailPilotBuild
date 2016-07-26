@@ -1,8 +1,8 @@
 /**
- * @author Tom Tsiliopoulos ttsliop@my.centennialcollege.ca
- * @studentID 300818577
- * @date July 4, 2016
- * @version 0.01 - Initial version of the button class
+ * @author Vasyl Milchevskyi vmilchevskyi@my.centennialcollege.ca
+ * @studentID 300839782
+ * @date 
+ * @version alpha
  */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

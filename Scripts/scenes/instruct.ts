@@ -20,7 +20,7 @@ module scenes {
             this._instructLabel = new objects.Label(
                 "WIN OR DIE", "60px","Consolas", "#000000",
                 320, 240
-                );
+                , true);
             this.addChild(this._instructLabel);
 
             // add the start button

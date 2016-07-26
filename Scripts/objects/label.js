@@ -14,7 +14,7 @@ var objects;
      */
     var Label = (function (_super) {
         __extends(Label, _super);
-        function Label(labelString, fontSize, fontFamily, fontColour, x, y) {
+        function Label(labelString, fontSize, fontFamily, fontColour, x, y, isCentered) {
             _super.call(this, labelString, (fontSize + " " + fontFamily), fontColour);
             this.labelString = labelString;
             this.fontSize = fontSize;

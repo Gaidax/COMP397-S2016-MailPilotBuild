@@ -19,7 +19,7 @@ var scenes;
          */
         Instruct.prototype.Start = function () {
             // Add Menu Label
-            this._instructLabel = new objects.Label("WIN OR DIE", "60px", "Consolas", "#000000", 320, 240);
+            this._instructLabel = new objects.Label("WIN OR DIE", "60px", "Consolas", "#000000", 320, 240, true);
             this.addChild(this._instructLabel);
             // add the start button
             this._backButton = new objects.Button("startButton", 320, 420, true);

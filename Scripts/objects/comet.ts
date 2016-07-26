@@ -4,30 +4,10 @@ module objects {
      * @class Comet
      * @extends {createjs.Bitmap}
      */
-    export class Comet extends createjs.Bitmap {
+    export class Comet extends objects.GameObject {
         // PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++
         private _dy:number;
         private _dx:number;
-        private _width:number;
-        private _height:number;
-
-        // PUBLIC PROPERTIES
-
-        get width():number {
-            return this._width;
-        }
-
-        set width(newWidth:number) {
-            this._width = newWidth;
-        }
-
-        get height():number {
-            return this._height;
-        }
-
-        set height(newHeight:number) {
-            this._height = newHeight;
-        }
 
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         /**
@@ -37,8 +17,7 @@ module objects {
          * @param {string} imageString
          */
         constructor(imageString: string) {
-            super(core.assets.getResult(imageString));
-
+            super(imageString);
             this.start();
         }
 

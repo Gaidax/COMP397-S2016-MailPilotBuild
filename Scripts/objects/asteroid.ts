@@ -6,40 +6,18 @@ module objects {
      * @class Asteroid
      * @extends {createjs.Bitmap}
      */
-    export class Asteroid extends createjs.Bitmap {
+    export class Asteroid extends objects.GameObject {
         // PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++
         private _dx:number;
-        private _width:number;
-        private _height:number;
-
-        // PUBLIC PROPERTIES
-
-        get width():number {
-            return this._width;
-        }
-
-        set width(newWidth:number) {
-            this._width = newWidth;
-        }
-
-        get height():number {
-            return this._height;
-        }
-
-        set height(newHeight:number) {
-            this._height = newHeight;
-        }
-
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         /**
-         * Creates an instance of Island.
+         * Creates an instance of an Asteroid.
          * 
          * @constructor
          * @param {string} imageString
          */
         constructor(imageString: string) {
-            super(core.assets.getResult(imageString));
-
+            super(imageString);
             this.start();
         }
 
@@ -92,10 +70,6 @@ module objects {
          * @returns {void}
          */
         public start():void {
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
             this._reset();
             this._dx = 5; // 5px per frame down
         }

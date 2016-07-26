@@ -19,6 +19,9 @@ var core;
     var over;
     var play;
     var instruct;
+    core.score = 0;
+    core.highScore = 0;
+    core.lives = 3;
     // asset manifest for images and sounds
     var assetData = [
         { id: "startButton", src: "../../Assets/images/startButton.png" },

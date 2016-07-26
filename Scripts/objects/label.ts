@@ -13,7 +13,8 @@ module objects {
             private fontFamily:string, 
             private fontColour:string,
             x:number,
-            y:number) {
+            y:number,
+            isCentered: boolean) {
             super(labelString,(fontSize + " " + fontFamily),fontColour);
 
             this.regX = this.getMeasuredWidth() * 0.5;
