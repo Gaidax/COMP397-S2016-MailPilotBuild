@@ -1,17 +1,17 @@
 module objects {
     /**
-     * This is the Player object used in the game
-     * 
      * @export
-     * @class Player
+     * @class Comet
      * @extends {createjs.Bitmap}
      */
-    export class Player extends createjs.Bitmap {
-         // PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++
+    export class Comet extends createjs.Bitmap {
+        // PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++
+        private _dy:number;
+        private _dx:number;
         private _width:number;
         private _height:number;
 
-        // PUBLIC PROPERTIES +++++++++++++++++++++++++++++++++++++++
+        // PUBLIC PROPERTIES
 
         get width():number {
             return this._width;
@@ -31,18 +31,37 @@ module objects {
 
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         /**
-         * Creates an instance of Island.
+         * Creates an instance of Comet.
          * 
          * @constructor
          * @param {string} imageString
          */
-        constructor(imageString:string) {
-            super(core.assets.getResult(imageString))
+        constructor(imageString: string) {
+            super(core.assets.getResult(imageString));
 
             this.start();
         }
 
-         /**
+        // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
+        /**
+         * Resets the object outside of the viewport
+         * and sets the x and y locations
+         * 
+         * @private
+         * @method _reset
+         * @returns {void}
+         */
+        private _reset():void {
+            this._dx = Math.floor((Math.random() * 5) + 5); // vertical speed
+            this._dy = Math.floor((Math.random() * 4) - 2); // horizontal drift
+
+            this.x = 640 +(this.height * 0.5);
+
+            // get a random x location
+            this.y = Math.floor((Math.random() * (480 + (this.width * 0.5))) + (this.width * 0.5));
+        }
+
+        /**
          * This method checks if the object has reached its boundaries
          * 
          * @private
@@ -50,19 +69,11 @@ module objects {
          * @returns {void}
          */
         private _checkBounds():void {
-            // checkbounds to stop player from going outside
-
-            // check right bounds
-            if(this.y >= (480 - (this.width * 0.5))) {
-                this.y = (480 - (this.width * 0.5));
-            }
-
-            // check left bounds
-            if(this.y <= (0 + (this.width * 0.5))) {
-                this.y = (0 + (this.width * 0.5));
+            if(this.x <= (- (this.height * 0.5))) {
+                this._reset();
             }
         }
-
+        
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
 
         /**
@@ -78,7 +89,7 @@ module objects {
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
-            this.x = 230;
+            this._reset();
         }
 
         /**
@@ -90,8 +101,8 @@ module objects {
          * @returns {void}
          */
         public update():void {
-            // player to follow mouse
-            this.y = core.stage.mouseY;
+            this.y -= this._dy;
+            this.x -= this._dx;
             this._checkBounds();
         }
     }

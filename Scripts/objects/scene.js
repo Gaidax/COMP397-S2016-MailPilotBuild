@@ -29,6 +29,9 @@ var objects;
         Scene.prototype.Start = function () {
             core.stage.addChild(this);
         };
+        Scene.prototype.getScene = function () {
+            return this;
+        };
         /**
          * Updates Game objects in the Scene
          *

@@ -6,27 +6,25 @@ var __extends = (this && this.__extends) || function (d, b) {
 var objects;
 (function (objects) {
     /**
-     * This is the Player object used in the game
-     *
      * @export
-     * @class Player
+     * @class Comet
      * @extends {createjs.Bitmap}
      */
-    var Player = (function (_super) {
-        __extends(Player, _super);
+    var Comet = (function (_super) {
+        __extends(Comet, _super);
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         /**
-         * Creates an instance of Island.
+         * Creates an instance of Comet.
          *
          * @constructor
          * @param {string} imageString
          */
-        function Player(imageString) {
+        function Comet(imageString) {
             _super.call(this, core.assets.getResult(imageString));
             this.start();
         }
-        Object.defineProperty(Player.prototype, "width", {
-            // PUBLIC PROPERTIES +++++++++++++++++++++++++++++++++++++++
+        Object.defineProperty(Comet.prototype, "width", {
+            // PUBLIC PROPERTIES
             get: function () {
                 return this._width;
             },
@@ -36,7 +34,7 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(Player.prototype, "height", {
+        Object.defineProperty(Comet.prototype, "height", {
             get: function () {
                 return this._height;
             },
@@ -46,22 +44,32 @@ var objects;
             enumerable: true,
             configurable: true
         });
+        // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         /**
-        * This method checks if the object has reached its boundaries
-        *
-        * @private
-        * @method _checkBounds
-        * @returns {void}
-        */
-        Player.prototype._checkBounds = function () {
-            // checkbounds to stop player from going outside
-            // check right bounds
-            if (this.y >= (480 - (this.width * 0.5))) {
-                this.y = (480 - (this.width * 0.5));
-            }
-            // check left bounds
-            if (this.y <= (0 + (this.width * 0.5))) {
-                this.y = (0 + (this.width * 0.5));
+         * Resets the object outside of the viewport
+         * and sets the x and y locations
+         *
+         * @private
+         * @method _reset
+         * @returns {void}
+         */
+        Comet.prototype._reset = function () {
+            this._dx = Math.floor((Math.random() * 5) + 5); // vertical speed
+            this._dy = Math.floor((Math.random() * 4) - 2); // horizontal drift
+            this.x = 640 + (this.height * 0.5);
+            // get a random x location
+            this.y = Math.floor((Math.random() * (480 + (this.width * 0.5))) + (this.width * 0.5));
+        };
+        /**
+         * This method checks if the object has reached its boundaries
+         *
+         * @private
+         * @method _checkBounds
+         * @returns {void}
+         */
+        Comet.prototype._checkBounds = function () {
+            if (this.x <= (-(this.height * 0.5))) {
+                this._reset();
             }
         };
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
@@ -73,12 +81,12 @@ var objects;
          * @method start
          * @returns {void}
          */
-        Player.prototype.start = function () {
+        Comet.prototype.start = function () {
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
-            this.x = 230;
+            this._reset();
         };
         /**
          * This method updates the object's properties
@@ -88,13 +96,13 @@ var objects;
          * @method update
          * @returns {void}
          */
-        Player.prototype.update = function () {
-            // player to follow mouse
-            this.y = core.stage.mouseY;
+        Comet.prototype.update = function () {
+            this.y -= this._dy;
+            this.x -= this._dx;
             this._checkBounds();
         };
-        return Player;
+        return Comet;
     }(createjs.Bitmap));
-    objects.Player = Player;
+    objects.Comet = Comet;
 })(objects || (objects = {}));
-//# sourceMappingURL=player.js.map
+//# sourceMappingURL=comet.js.map

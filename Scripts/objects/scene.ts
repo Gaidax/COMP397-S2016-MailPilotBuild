@@ -26,6 +26,10 @@ module objects {
             core.stage.addChild(this);
         }
 
+        public getScene() : Scene {
+            return this;
+        }
+
         /**
          * Updates Game objects in the Scene
          * 

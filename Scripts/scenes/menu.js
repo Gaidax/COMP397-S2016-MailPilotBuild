@@ -23,9 +23,12 @@ var scenes;
             this.addChild(this._menuLabel);
             // add the start button
             this._startButton = new objects.Button("startButton", 320, 420, true);
+            this._instructionButton = new objects.Button("instructButton", 325, 425, true);
             this.addChild(this._startButton);
+            this.addChild(this._instructionButton);
             // Start button event listener
             this._startButton.on("click", this._startButtonClick, this);
+            this._instructionButton.on("click", this.__instructionButtonClick, this);
             // add this scene to the global scene container
             core.stage.addChild(this);
         };
@@ -36,6 +39,10 @@ var scenes;
         Menu.prototype._startButtonClick = function (event) {
             // Switch the scene
             core.scene = config.Scene.PLAY;
+            core.changeScene();
+        };
+        Menu.prototype.__instructionButtonClick = function (event) {
+            core.scene = config.Scene.INSTRUCTION;
             core.changeScene();
         };
         return Menu;

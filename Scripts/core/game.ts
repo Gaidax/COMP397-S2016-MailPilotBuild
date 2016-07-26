@@ -1,11 +1,11 @@
 /// <reference path="_reference.ts"/>
 
 /**
- * @author Tom Tsiliopoulos ttsliop@my.centennialcollege.ca
- * @studentID 300818577
- * @date July 11, 2016
+ * @author Vasyl Milchevskyi
+ * @studentID 300839782
+ * @date 
  * @description This file is the entry point for the game
- * @version 0.1 - Initial version of the boilerplate
+ * @version alpha
  */
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -32,19 +32,23 @@ namespace core {
     let menu: scenes.Menu;
     let over: scenes.Over;
     let play: scenes.Play;
+    let instruct: scenes.Instruct;
 
     
 
     // asset manifest for images and sounds
     let assetData:objects.Asset[] = [
         { id: "startButton", src: "../../Assets/images/startButton.png" },
+        { id: "instructButton", src: "../../Assets/images/startButton.png" },
         { id: "restartButton", src: "../../Assets/images/restartButton.png" },
         { id: "nextButton", src: "../../Assets/images/nextButton.png" },
         { id: "exitButton", src: "../../Assets/images/exitButton.png" },
-        { id: "ocean", src: "../../Assets/images/ocean.gif" },
-        { id: "island", src: "../../Assets/images/island.png" },
+        { id: "space", src: "../../Assets/images/space.jpg" },
+        { id: "comet", src: "../../Assets/images/firecomet.png" },
         { id: "plane", src: "../../Assets/images/plane.png" },
-        { id: "cloud", src: "../../Assets/images/cloud.png" }
+        { id: "asteroid1", src: "../../Assets/images/asteroid1.png" },
+        { id: "asteroid2", src: "../../Assets/images/asteroid2.png" },
+        { id: "asteroid3", src: "../../Assets/images/asteroid3.png" }
     ];
 
     /**
@@ -106,6 +110,11 @@ namespace core {
 
         //Launch Various Scenes
         switch (scene) {
+            case config.Scene.INSTRUCTION:
+            stage.removeAllChildren();
+            instruct = new scenes.Instruct();
+            currentScene = instruct;
+            break;
             // Show the MENU Scene
             case config.Scene.MENU:
                 stage.removeAllChildren();

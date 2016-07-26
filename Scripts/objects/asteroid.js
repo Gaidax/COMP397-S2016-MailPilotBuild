@@ -6,14 +6,14 @@ var __extends = (this && this.__extends) || function (d, b) {
 var objects;
 (function (objects) {
     /**
-     * This is the Player object used in the game
+     * This is the Asteroid object used in the game
      *
      * @export
-     * @class Player
+     * @class Asteroid
      * @extends {createjs.Bitmap}
      */
-    var Player = (function (_super) {
-        __extends(Player, _super);
+    var Asteroid = (function (_super) {
+        __extends(Asteroid, _super);
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         /**
          * Creates an instance of Island.
@@ -21,12 +21,12 @@ var objects;
          * @constructor
          * @param {string} imageString
          */
-        function Player(imageString) {
+        function Asteroid(imageString) {
             _super.call(this, core.assets.getResult(imageString));
             this.start();
         }
-        Object.defineProperty(Player.prototype, "width", {
-            // PUBLIC PROPERTIES +++++++++++++++++++++++++++++++++++++++
+        Object.defineProperty(Asteroid.prototype, "width", {
+            // PUBLIC PROPERTIES
             get: function () {
                 return this._width;
             },
@@ -36,7 +36,7 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(Player.prototype, "height", {
+        Object.defineProperty(Asteroid.prototype, "height", {
             get: function () {
                 return this._height;
             },
@@ -46,23 +46,37 @@ var objects;
             enumerable: true,
             configurable: true
         });
+        // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         /**
-        * This method checks if the object has reached its boundaries
-        *
-        * @private
-        * @method _checkBounds
-        * @returns {void}
-        */
-        Player.prototype._checkBounds = function () {
-            // checkbounds to stop player from going outside
-            // check right bounds
-            if (this.y >= (480 - (this.width * 0.5))) {
-                this.y = (480 - (this.width * 0.5));
+         * Resets the object outside of the viewport
+         * and sets the x and y locations
+         *
+         * @private
+         * @method _reset
+         * @returns {void}
+         */
+        Asteroid.prototype._reset = function () {
+            this.image = this.getAsset().image;
+            this.x = 640 + (this.height * 0.5);
+            // get a random x location
+            this.y = Math.floor((Math.random() * (480 - (this.width * 0.5))) + (this.width * 0.5));
+        };
+        /**
+         * This method checks if the object has reached its boundaries
+         *
+         * @private
+         * @method _checkBounds
+         * @returns {void}
+         */
+        Asteroid.prototype._checkBounds = function () {
+            if (this.x <= (-(this.height * 0.5))) {
+                this._reset();
             }
-            // check left bounds
-            if (this.y <= (0 + (this.width * 0.5))) {
-                this.y = (0 + (this.width * 0.5));
-            }
+        };
+        Asteroid.prototype.getAsset = function () {
+            var num = Math.floor(Math.random() * 3) + 1;
+            var image = "asteroid" + num;
+            return new createjs.Bitmap(core.assets.getResult(image));
         };
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         /**
@@ -73,12 +87,13 @@ var objects;
          * @method start
          * @returns {void}
          */
-        Player.prototype.start = function () {
+        Asteroid.prototype.start = function () {
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
-            this.x = 230;
+            this._reset();
+            this._dx = 5; // 5px per frame down
         };
         /**
          * This method updates the object's properties
@@ -88,13 +103,12 @@ var objects;
          * @method update
          * @returns {void}
          */
-        Player.prototype.update = function () {
-            // player to follow mouse
-            this.y = core.stage.mouseY;
+        Asteroid.prototype.update = function () {
+            this.x -= this._dx;
             this._checkBounds();
         };
-        return Player;
+        return Asteroid;
     }(createjs.Bitmap));
-    objects.Player = Player;
+    objects.Asteroid = Asteroid;
 })(objects || (objects = {}));
-//# sourceMappingURL=player.js.map
+//# sourceMappingURL=asteroid.js.map
